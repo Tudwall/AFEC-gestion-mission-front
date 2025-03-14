@@ -5,7 +5,7 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     async login(username, password) {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch(`${import.meta.env.BASE_URL}/login`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async signup(username, password) {
-      const response = await fetch('http://localhost:3000/register', {
+      const response = await fetch(`${import.meta.env.BASE_URL}/register`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -36,13 +36,13 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async logout() {
-      await fetch('http://localhost:3000/logout', { method: 'POST', credentials: 'include' })
+      await fetch(`${import.meta.env.BASE_URL}/logout`, { method: 'POST', credentials: 'include' })
       this.user = null
     },
 
     async checkAuth() {
       try {
-        const response = await fetch('http://localhost:3000/checkAuth', {
+        const response = await fetch(`${import.meta.env.BASE_URL}/checkAuth`, {
           method: 'GET',
           credentials: 'include',
         })
